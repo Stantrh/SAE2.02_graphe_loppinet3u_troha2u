@@ -16,11 +16,16 @@ public class Noeud {
         }
     }
 
-    /*
-    Redéfinition de la méthode equals. Si deux noeuds ont le même nom
-    Alors ils sont égaux
+    /**
+     * Redéfinition de la méthode equals. Si deux noeuds ont le même nom alors ils sont égaux
+     * @param o Le noeud dont on veut comparer le nom
+     * @return true si les noms sont les mêmes, false sinon.
      */
     public boolean equals(Object o){
         return (this.nom.compareTo((Noeud)o.nom)) == 0;
+    }
+
+    public void ajouterArc(String destination, double cout){
+        this.adj.add(new Arc(destination,cout));
     }
 }
