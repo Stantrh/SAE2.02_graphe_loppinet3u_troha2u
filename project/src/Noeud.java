@@ -21,6 +21,6 @@ public class Noeud {
     Alors ils sont égaux
      */
     public boolean equals(Object o){
-        return (this.nom.compareTo(o.nom)) == 0;
+        return (this.nom.compareTo((Noeud)o.nom)) == 0;
     }
 }
