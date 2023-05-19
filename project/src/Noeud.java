@@ -15,4 +15,12 @@ public class Noeud {
             this.adj = new ArrayList<Arc>();
         }
     }
+
+    /*
+    Redéfinition de la méthode equals. Si deux noeuds ont le même nom
+    Alors ils sont égaux
+     */
+    public boolean equals(Object o){
+        return (this.nom.compareTo(o.nom)) == 0;
+    }
 }
