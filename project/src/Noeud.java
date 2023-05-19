@@ -22,7 +22,8 @@ public class Noeud {
      * @return true si les noms sont les mêmes, false sinon.
      */
     public boolean equals(Object o){
-        return (this.nom.compareTo((Noeud)o.nom)) == 0;
+        Noeud n = (Noeud)o;
+        return (this.nom.compareTo(n.nom)) == 0;
     }
 
     public void ajouterArc(String destination, double cout){

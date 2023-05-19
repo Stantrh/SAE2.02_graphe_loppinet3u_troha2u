@@ -1,6 +1,6 @@
 public class Arc {
     /*
-    Attribut correspondant au nom du noeud de destination de l'arc
+    Nom du noeud de destination de l'arc
      */
     private String dest;
 
@@ -11,6 +11,8 @@ public class Arc {
 
     /*
     Constructeur d'un objet Arc à partir d'un nom et d'un réel
+    Vérifie que le nom du noeud de destination ne soit pas null et le cout bien strictement
+    positif
      */
     public Arc(String n, double c){
         if(n == null){
