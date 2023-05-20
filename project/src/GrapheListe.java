@@ -10,7 +10,7 @@ public class GrapheListe implements Graphe{
     private List<Noeud> ensNoeuds;
 
     public List<String> listeNoeuds(){
-        throw new Error("ldld");
+        return this.ensNom;
     }
 
     public List<Arc> suivants(String n){
