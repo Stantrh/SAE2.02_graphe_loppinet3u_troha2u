@@ -49,4 +49,13 @@ public class Noeud {
     public void ajouterArc(String destination, double cout){
         this.adj.add(new Arc(destination,cout));
     }
+
+
+    /**
+    Renvoie la liste des arcs d'un noeud
+     */
+    public List<Arc> getArcs(){
+        return this.adj;
+    }
+
 }
