@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.IOException;
 
 public class GrapheListe implements Graphe{
     /**
@@ -25,6 +26,25 @@ public class GrapheListe implements Graphe{
         this.ensNoeuds = new ArrayList<Noeud>();
     }
 
+    public GrapheListe(String nomFichier){
+        // Initialisation des listes dans tous les cas pour éviter de provoquer des erreurs à l'avenir (méthode add notamment)
+        this.ensNom = new ArrayList<String>();
+        this.ensNoeuds = new ArrayList<Noeud>();
+
+        try {
+            BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+            String ligne = fichier.readLine();
+            while(ligne != null){
+                String[] colonnes = ligne.split("\t");
+                ajouterArc(colonnes[0],colonnes[1], Integer.parseInt(colonnes[2]));
+                ligne = fichier.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Le fichier est introuvable");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Getter qui retourne la liste des noeuds.
