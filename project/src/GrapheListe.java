@@ -23,7 +23,14 @@ public class GrapheListe implements Graphe{
     }
 
 
-
+    /**
+     * Getter qui retourne la liste des noeuds.
+     * Utile pour les tests mais également lorsqu'on souhaite accéder
+     * aux noeuds adjacents d'un noeud de la liste
+     */
+    public List<Noeud> getListeNoeuds(){
+        return this.ensNoeuds;
+    }
 
 
     /**
