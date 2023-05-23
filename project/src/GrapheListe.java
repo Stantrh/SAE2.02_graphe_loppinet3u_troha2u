@@ -184,8 +184,12 @@ public class GrapheListe implements Graphe{
                         fich.newLine();
                     }
                 }
+
                 ligne = fichier.readLine();
             }
+            fichier.close();
+            fich.close();
+
         }catch(FileNotFoundException e){
             System.err.println("Le(s) chemin(s) vers le(s) fichier(s) est incorrect");
         }catch(IOException e){
