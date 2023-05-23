@@ -1,10 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.io.IOException;
 
 public class GrapheListe implements Graphe{
     /**
@@ -157,6 +155,47 @@ public class GrapheListe implements Graphe{
     }
 
 
+    public void creerFichier(String nomFichierSrc, String nomFichierDest){
+        try{
+            // Pour pouvoir lire le fichier on crée un BufferedReader qui va le lire ligne par ligne
+            BufferedReader fichier = new BufferedReader(new FileReader(nomFichierSrc));
+
+            // Pour écrire dans le ficheir dont le nom est donné en paramètres on crée un BufferedWriter
+            BufferedWriter fich = new BufferedWriter(new FileWriter(nomFichierDest));
+
+            String ligne = fichier.readLine();
+            // Première ligne du fichier pour se rappeler de quelle colonnes
+            // correspond à quel noeud
+            String[] ligneUn = ligne.split("\t");
+            ligne = fichier.readLine();
+            // On parcourt a partir de la 2eme ligne puisqu'on veut créer
+            // les noeuds adjacents pour chaque noeuds (écrits à partir de la 2eme ligne)
+            while(ligne != null){
+                // Ici on a donc la ligne dans un tableau chaque
+                // terme du tableau étant une colonne
+                String[] colonnes = ligne.split("\t");
+                // On parcourt la ligne qui contient les noeuds
+                // adjacents au noeud
+                for(int i = 1; i < colonnes.length; i++){
+                    if(!colonnes[i].equals("0.")){
+                        System.out.println(colonnes[0] + ligneUn[i] + colonnes[i]);
+                        String aff = colonnes[0] + " " + ligneUn[i] + " " + colonnes[i];
+                        fich.write(aff);
+                        fich.newLine();
+                    }
+                }
+                ligne = fichier.readLine();
+            }
+        }catch(FileNotFoundException e){
+            System.err.println("Le(s) chemin(s) vers le(s) fichier(s) est incorrect");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
 
     public static void main(String[] args){
@@ -178,7 +217,9 @@ public class GrapheListe implements Graphe{
 
         gL.ajouterArc("E", "D", 43);
 
-        System.out.println(gL.toGraphviz());
+        //System.out.println(gL.toGraphviz());
+
+        gL.creerFichier("ressources/matrice.txt", "ressources/output.txt");
 
     }
 }
