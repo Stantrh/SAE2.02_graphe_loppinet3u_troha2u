@@ -77,34 +77,39 @@ public class GrapheListe implements Graphe{
             }
             this.ensNoeuds.get(this.ensNom.indexOf(depart)).ajouterArc(destination, cout);
         }else{
-            int indiceDepart = this.ensNom.indexOf(depart);
             int indiceDestination = this.ensNom.indexOf(destination);
+            Noeud nDepart = new Noeud(depart);
+            this.ensNoeuds.add(nDepart);
+            this.ensNom.add(depart);
             //Si le noeud de destination n'existe pas
             if(indiceDestination == -1 ){
                 Noeud nDest = new Noeud(destination);
                 this.ensNoeuds.add(nDest);
                 this.ensNom.add(destination);
             }
-            if(indiceDepart == -1){
-                Noeud nDepart = new Noeud(depart);
-                this.ensNoeuds.add(nDepart);
-                this.ensNom.add(depart);
-                nDepart.ajouterArc(destination, cout);
-            }
+
+            nDepart.ajouterArc(destination, cout);
+
         }
     }
 
 
     public String toString(){
         String aff = "";
-        for(String s : this.ensNom){
-            aff += (s + " -> ");
-            int indice = this.ensNom.indexOf(s);
-            Noeud n = this.ensNoeuds.get(indice);
-            for(Arc a : n.getArcs()){
-                aff += (a.getDest() + "(" + (int)a.getCout() + ") ");
+        for(int i = 0; i < this.ensNom.size(); i++){
+            // Ligne pour vérifier que le noeud sur lequel on est actuellement
+            // possède bien des noeuds adjacents, sinon inutile de l'écrire
+            if(this.ensNoeuds.get(i).getArcs().size() != 0){
+                String s = this.ensNom.get(i);
+                aff += (s + " -> ");
+                int indice = this.ensNom.indexOf(s);
+                Noeud n = this.ensNoeuds.get(indice);
+                for(Arc a : n.getArcs()){
+                    aff += (a.getDest() + "(" + (int)a.getCout() + ") ");
+                }
+                aff += "\n";
             }
-            aff += "\n";
+
         }
         return aff;
     }
@@ -132,7 +137,7 @@ public class GrapheListe implements Graphe{
 
         // Ajout des arcs entre les noeuds
         // Ce qui va donc aussi créer les noeuds
-
+        /*
         gL.ajouterArc("A", "B", 12);
         gL.ajouterArc("A", "D", 87);
 
@@ -144,7 +149,19 @@ public class GrapheListe implements Graphe{
         gL.ajouterArc("D", "C", 10);
 
         gL.ajouterArc("E", "D", 43);
+        */
+        gL.ajouterArc("A", "B", 12);
+        gL.ajouterArc("C", "A", 19);
+        gL.ajouterArc("A", "D", 87);
 
+        gL.ajouterArc("B", "E", 11);
+
+
+
+        gL.ajouterArc("D", "B", 23);
+        gL.ajouterArc("D", "C", 10);
+
+        gL.ajouterArc("E", "D", 43);
 
         System.out.println(gL.toGraphviz());
 
