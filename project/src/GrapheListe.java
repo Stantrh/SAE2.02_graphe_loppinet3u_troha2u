@@ -95,10 +95,24 @@ public class GrapheListe implements Graphe{
             int indice = this.ensNom.indexOf(s);
             Noeud n = this.ensNoeuds.get(indice);
             for(Arc a : n.getArcs()){
-                aff += (a.getDest() + "(" + a.getCout() + ") ");
+                aff += (a.getDest() + "(" + (int)a.getCout() + ") ");
             }
             aff += "\n";
         }
+        return aff;
+    }
+
+
+    public String toGraphviz(){
+        String aff = "digraph G{\n";
+        for(String s : this.ensNom){
+            int indice = this.ensNom.indexOf(s);
+            Noeud n = this.ensNoeuds.get(indice);
+            for(Arc a : n.getArcs()){
+                aff += (s + " -> " + a.getDest() + " [label = " + (int)a.getCout() + "]\n");
+            }
+        }
+        aff += "}";
         return aff;
     }
 
@@ -125,7 +139,7 @@ public class GrapheListe implements Graphe{
         gL.ajouterArc("E", "D", 43);
 
 
-        System.out.println(gL.toString());
+        System.out.println(gL.toGraphviz());
 
     }
 }
