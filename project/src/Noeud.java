@@ -47,7 +47,14 @@ public class Noeud {
      * @param cout coût de l'arc à ajouter
      */
     public void ajouterArc(String destination, double cout){
-        this.adj.add(new Arc(destination,cout));
+        boolean dejaPresent = false;
+        for(Arc a : this.adj){
+            if(a.getDest().equals(destination))
+                dejaPresent = true;
+        }
+
+        if(!dejaPresent)
+            this.adj.add(new Arc(destination,cout));
     }
 
 
