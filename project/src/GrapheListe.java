@@ -137,19 +137,6 @@ public class GrapheListe implements Graphe{
 
         // Ajout des arcs entre les noeuds
         // Ce qui va donc aussi créer les noeuds
-        /*
-        gL.ajouterArc("A", "B", 12);
-        gL.ajouterArc("A", "D", 87);
-
-        gL.ajouterArc("B", "E", 11);
-
-        gL.ajouterArc("C", "A", 19);
-
-        gL.ajouterArc("D", "B", 23);
-        gL.ajouterArc("D", "C", 10);
-
-        gL.ajouterArc("E", "D", 43);
-        */
         gL.ajouterArc("A", "B", 12);
         gL.ajouterArc("C", "A", 19);
         gL.ajouterArc("A", "D", 87);

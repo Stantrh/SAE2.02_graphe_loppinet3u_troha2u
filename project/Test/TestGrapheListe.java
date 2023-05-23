@@ -105,5 +105,36 @@ public class TestGrapheListe {
         assertEquals(aff, gL.toString());
     }
 
+    @Test
+    public void test_toGraphviz(){
+        // Préparation des données
+        GrapheListe gL = new GrapheListe();
+
+        gL.ajouterArc("A", "B", 12);
+        gL.ajouterArc("C", "A", 19);
+        gL.ajouterArc("A", "D", 87);
+
+        gL.ajouterArc("B", "E", 11);
+
+
+
+        gL.ajouterArc("D", "B", 23);
+        gL.ajouterArc("D", "C", 10);
+
+        gL.ajouterArc("E", "D", 43);
+
+        String aff = "digraph G{\n" +
+                "A -> B [label = 12]\n" +
+                "A -> D [label = 87]\n" +
+                "B -> E [label = 11]\n" +
+                "C -> A [label = 19]\n" +
+                "D -> B [label = 23]\n" +
+                "D -> C [label = 10]\n" +
+                "E -> D [label = 43]\n" +
+                "}";
+
+        assertEquals(aff, gL.toGraphviz());
+    }
+
 
 }
