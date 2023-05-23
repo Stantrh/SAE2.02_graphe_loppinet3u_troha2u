@@ -26,20 +26,25 @@ public class GrapheListe implements Graphe{
         this.ensNoeuds = new ArrayList<Noeud>();
     }
 
-    public GrapheListe(String nomFichier){
+
+    public GrapheListe(String nomFichierSrc){
         // Initialisation des listes dans tous les cas pour éviter de provoquer des erreurs à l'avenir (méthode add notamment)
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
+        // On suggère qu'il n'y a pas d'erreur dans le fichier texte
         try {
-            BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+            BufferedReader fichier = new BufferedReader(new FileReader(nomFichierSrc));
             String ligne = fichier.readLine();
             while(ligne != null){
+                // On prend chaque élément séparé par une tabulation et on les mets dans un tableau de String
                 String[] colonnes = ligne.split("\t");
+                // On ajoute ensuite les arcs en utilisant la méthode faite pour
                 ajouterArc(colonnes[0],colonnes[1], Integer.parseInt(colonnes[2]));
                 ligne = fichier.readLine();
             }
         } catch (FileNotFoundException e) {
+            // Si le fichier n'est pas trouvé, on l'indique
             System.err.println("Le fichier est introuvable");
         } catch (IOException e) {
             e.printStackTrace();
