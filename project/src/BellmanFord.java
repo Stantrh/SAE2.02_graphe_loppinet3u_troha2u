@@ -45,10 +45,8 @@ public class BellmanFord {
                     double distanceNouvelle = valeurs.getValeur(noeuds.get(i)) + a.getCout();
                     // Valeur du noeud lors du parcours de la liste d'arc
                     double distanceDestination = valeurs.getValeur(destination);
-                    System.out.println("arc");
                     // Mise à jour de la distance si une distance plus courte est trouvée
                     if (distanceDestination > distanceNouvelle) {
-                        System.out.println("lol");
                         valeurs.setValeur(destination, distanceNouvelle);
                         valeurs.setParent(destination, noeuds.get(i));
                         memeLigne = true;
