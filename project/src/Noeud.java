@@ -32,7 +32,7 @@ public class Noeud {
 
     /**
      * Compare les deux noms d'un noeud, s'ils sont égaux alors le noeud est le même
-     * @param o Le noeud dont on veut comparer le nom
+     * @param o Le nom (en String) du noeud dont on veut comparer le nom
      * @return true si les noms sont les mêmes, false sinon.
      */
     @Override
@@ -50,7 +50,7 @@ public class Noeud {
     public void ajouterArc(String destination, double cout){
         // Boolean indiquant si un arc a déjà pour destination la même que celui que l'on veut rajouter
         boolean dejaPresent = false;
-        // On parcourt la liste d'arcs pour vérifier s'il cet arc est déjà existant.
+        // On parcourt la liste d'arcs pour vérifier si cet arc est déjà existant.
         for(Arc a : this.adj){
             // Si c'est le cas, on définit le boolean à true
             if(a.getDest().equals(destination))
