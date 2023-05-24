@@ -75,6 +75,11 @@ public class Valeur {
      *
      * @return descriptif du noeud
      */
+
+
+
+
+
     public String toString() {
         String res = "";
         // pour chaque noeud
