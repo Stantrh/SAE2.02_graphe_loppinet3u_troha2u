@@ -81,12 +81,22 @@ public class GrapheListe implements Graphe{
      @return la liste des Arcs d'un noeud
      */
     public List<Arc> suivants(String n){
-        int indice = this.ensNoeuds.indexOf(n);
+
+        int indice = this.ensNom.indexOf(n);
         if(indice != -1){
             return this.ensNoeuds.get(indice).getArcs();
         }else{
             return Collections.emptyList();
         }
+        /*
+        Noeud noeud = null;
+        for(Noeud elt: this.ensNoeuds){
+            if(elt.equals(new Noeud(n))){
+                noeud = elt;
+            }
+        }
+        return noeud.getArcs();
+        */
     }
 
     /**

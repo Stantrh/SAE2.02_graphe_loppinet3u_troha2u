@@ -15,35 +15,46 @@ public class BellmanFord {
 
         // Initialisation des valeurs avec +∞ sauf pour le noeud de départ qu'on initialise à 0
         for (String noeud : noeuds) {
+            valeurs.setParent(noeud, null);
             if (noeud.equals(depart))
                 valeurs.setValeur(noeud, 0);
             else
                 valeurs.setValeur(noeud, Double.MAX_VALUE);
         }
+        boolean memeLigne = true;
 
-        // L'algorithme en lui même
-        // Donc on parcourt la liste du premier noeud au dernier
-        // comme de gauche à droite lorsqu'on le fait sur papier
-        for (int i = 0; i < noeuds.size() - 1; i++) {
-            for (String n : noeuds) {
+
+        while(memeLigne) {
+            memeLigne = false;
+
+            // L'algorithme en lui même
+            // Donc on parcourt la liste du premier noeud au dernier
+            // comme de gauche à droite lorsqu'on le fait sur papier
+
+            for (int i = 0; i < noeuds.size(); i++) {
+
                 // On stocke la liste de tous les noeuds adjacents au noeud courant
-                List<Arc> arcs = g.suivants(n);
+                List<Arc> arcs = g.suivants(noeuds.get(i));
+
                 // On la parcourt pour trouver le chemin le plus court parmi tous ces noeuds et le noeud actuel
                 for (Arc a : arcs) {
                     // Noeud de destination
                     String destination = a.getDest();
                     double cout = a.getCout();
                     // Valeur du noeud noeud
-                    double distanceCourante = valeurs.getValeur(n);
+                    double distanceNouvelle = valeurs.getValeur(noeuds.get(i)) + a.getCout();
                     // Valeur du noeud lors du parcours de la liste d'arc
                     double distanceDestination = valeurs.getValeur(destination);
-
+                    System.out.println("arc");
                     // Mise à jour de la distance si une distance plus courte est trouvée
-                    if (distanceCourante + cout < distanceDestination) {
-                        valeurs.setValeur(destination, distanceCourante + cout);
-                        valeurs.setParent(destination, n);
+                    if (distanceDestination > distanceNouvelle) {
+                        System.out.println("lol");
+                        valeurs.setValeur(destination, distanceNouvelle);
+                        valeurs.setParent(destination, noeuds.get(i));
+                        memeLigne = true;
                     }
                 }
+
             }
         }
         return valeurs;
