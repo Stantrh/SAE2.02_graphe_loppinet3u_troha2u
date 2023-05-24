@@ -16,9 +16,8 @@ public class GrapheListe implements Graphe{
      */
     private List<Noeud> ensNoeuds;
 
-
     /**
-     * Constructeur par défaut
+     * Constructeur par défauts
      */
     public GrapheListe(){
         this.ensNom = new ArrayList<String>();
