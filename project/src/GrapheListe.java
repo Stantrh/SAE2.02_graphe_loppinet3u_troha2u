@@ -54,6 +54,28 @@ public class GrapheListe implements Graphe{
     }
 
     /**
+     * Constructeur d'un graphe d'une taille donnée
+     * @param taille le nombre de noeuds du graphe au total
+     */
+    public GrapheListe(int taille){
+        // Initialisation les attributs de l'objet à des listes vides
+        this.ensNom = new ArrayList<String>();
+        this.ensNoeuds = new ArrayList<Noeud>();
+
+        // Pour le nombre de noeuds indiqué :
+        for(int i=1;i<taille+1;i++){
+            // On ajoute un arc entre chaque noeud et le noeud suivant afin d'obtenir une chemin qui relie tous les noeuds
+            ajouterArc(Integer.toString(i), Integer.toString(i+1), (int)Math.floor(Math.random()*100));
+
+            // Pour chaque noeud du graphe, on ajoute un nombre aléatoire d'arcs reliant ce noeud et un autre noeud aléatoirement de la liste
+            for(int j=0;j<Math.random()*10;j++){
+                ajouterArc(Integer.toString(i), Integer.toString((int)Math.floor(Math.random())), (int)Math.floor(Math.random()*100));
+            }
+        }
+
+    }
+
+    /**
      * Retourne la liste des noeuds en tant qu'objets Noeud
      * Utile pour les tests mais également lorsqu'on souhaite accéder
      * aux noeuds adjacents d'un noeud de la liste
