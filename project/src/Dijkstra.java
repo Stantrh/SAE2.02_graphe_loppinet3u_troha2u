@@ -10,6 +10,8 @@ public class Dijkstra implements Algorithme {
      */
     @Override
     public Valeur resoudre(Graphe g, String depart) {
+
+
         // Initialisation
         Valeur valeur = new Valeur();
         // Q <- {} // utilisation d’une liste de noeuds à traiter
@@ -29,6 +31,9 @@ public class Dijkstra implements Algorithme {
         // A.distance <- 0
         valeur.setValeur(depart, 0);
 
+
+        // Correspond au nombre d'itération pour l'affichage (Question 22)
+        int k = 0;
         // Tant que Q est un ensemble non vide faire
         while(!Q.isEmpty()){
             // On recherche le sommet de Q tel que sa distance soit la plus petite et on garde son indice
@@ -64,6 +69,8 @@ public class Dijkstra implements Algorithme {
                     valeur.setParent(v,u);
                 }
             }
+            k++;
+            System.out.println("Itération n° " + k + " \n" + valeur.toString() );
         }
         return valeur;
     }
