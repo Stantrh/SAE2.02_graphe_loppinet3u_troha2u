@@ -1,6 +1,7 @@
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class BellmanFord {
+public class BellmanFord implements Algorithme {
     /**
      *  Retourne un objet valeur qui lui contient toutes les informations sur le graphe
      *  en utilisant l'algorithme de BellmanFord
