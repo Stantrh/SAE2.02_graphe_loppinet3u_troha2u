@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Dijkstra implements Algorithme {
     /*
             Entrées :
@@ -27,6 +29,10 @@ public class Dijkstra implements Algorithme {
         Fin
      */
     public Valeur resoudre(Graphe g, String depart){
+        List<String> aTraiter = new ArrayList<String>();
+        for(String n : g.listeNoeuds()){
 
+        }
+        return new Valeur();
     }
 }
