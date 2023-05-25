@@ -6,7 +6,7 @@ public class Dijkstra implements Algorithme {
      * calcule les plus courts chemins vers les autres nœuds du graphe avec l’algorithme de Dijkstra.
      * @param g le graphe à étudier
      * @param depart le nom du noeud de départ
-     * @return
+     * @return Valeur représentant une TreeMap
      */
     @Override
     public Valeur resoudre(Graphe g, String depart) {
