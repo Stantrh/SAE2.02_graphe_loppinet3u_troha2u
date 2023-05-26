@@ -62,7 +62,7 @@ public class GrapheListe implements Graphe{
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
-        int nbArcsMin = (int)Math.ceil(taille*0.6); // 0,6 pour avoir une forte connectivité, on peut l'augmenter jusqu'à 1 pour avoir une meilleure connectivité
+        int nbArcsMin = (int)Math.ceil(taille); // 0,6 pour avoir une forte connectivité, on peut l'augmenter jusqu'à 1 pour avoir une meilleure connectivité
 
         if(nbArcsMin>taille)
             nbArcsMin = taille;
@@ -75,7 +75,7 @@ public class GrapheListe implements Graphe{
             // Pour chaque noeud du graphe, on ajoute un nombre aléatoire d'arcs reliant ce noeud et un autre noeud aléatoirement de la liste
             int j = 0;
             List<Integer> noeudsDisponibles = new ArrayList<Integer>();
-            for (int k = 1; k < taille; k++) { // taille+1 car on peut rejoindre directement le dernier noeud
+            for (int k = 1; k < taille+1; k++) { // taille+1 car on peut rejoindre directement le dernier noeud
                 noeudsDisponibles.add(k);
             }
             Collections.shuffle(noeudsDisponibles); // On mélange le tableau pour que ça soit aléatoire (on aurait aussi pu utiliser un indice random parmi le tableau de base) mais c'est préférable pour la lisibilité
