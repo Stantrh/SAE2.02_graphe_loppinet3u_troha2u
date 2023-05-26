@@ -37,8 +37,13 @@ public class Noeud {
      */
     @Override
     public boolean equals(Object o){
-        Noeud n = (Noeud)o;
-        return (this.nom.compareTo(n.nom)) == 0;
+        if(o instanceof Noeud) {
+            Noeud n = (Noeud) o;
+            return (this.nom.compareTo(n.nom)) == 0;
+        }
+        else{
+            throw new IllegalArgumentException("L'objet passé en paramètre doit être obligatoirement de type Noeud");
+        }
     }
 
     /**
@@ -55,6 +60,7 @@ public class Noeud {
             // Si c'est le cas, on définit le boolean à true
             if(a.getDest().equals(destination))
                 dejaPresent = true;
+                break; // Si l'arc est déjà existant, il ne sert plus à rien de continuer à chercher, on sait qu'on ne doit pas ajouter le nouvel arc.
         }
 
         // Seulement si l'arc n'est pas déjà dans la liste d'arcs, on l'ajoute
