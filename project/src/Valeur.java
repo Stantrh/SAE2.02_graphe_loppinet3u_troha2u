@@ -85,7 +85,7 @@ public class Valeur {
      * @return la liste de noeuds pour aller à cette destination (chemin)
      */
     public List<String> calculerChemin(String destination){
-        ArrayList<String> listeNoeuds = new ArrayList<>();
+        ArrayList<String> listeNoeuds = new ArrayList<String>();
         listeNoeuds.add(destination);
 
         String parent = this.getParent(destination);
