@@ -1,9 +1,6 @@
 import javax.sound.midi.SysexMessage;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
-import java.io.File;
 
 public class MainComparaison {
 
@@ -35,16 +32,16 @@ public class MainComparaison {
         BellmanFord bF = new BellmanFord();
         Dijkstra d = new Dijkstra();
         try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./ressources/test.csv"));
+            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/lol.csv"));
 
             // On écrit la première ligne du fichier pour les en têtes et noms de colonnes
-            writer.write("" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
-            writer.newLine();
+            writer.println("Temps/Algorithme" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
+
 
             // Pour chaque fichier de la liste faire
             for(File fichier : liste) {
                 if (fichier.isFile()) { // Vérification que fichier ne soit pas autre chose qu'un fichier
-
+                    System.out.println(fichier.getName());
                     // Création du graphe selon le fichier
                     GrapheListe g = new GrapheListe(fichier.getPath());
 
@@ -59,33 +56,19 @@ public class MainComparaison {
                     long finDijkstra = System.nanoTime();
                     long tempsDijkstra = finDijkstra - debutDijkstra;
 
-                    writer.write(fichier.getName() + ";" + "coucou" + ";" + "cici");
-                    writer.newLine();
+                    writer.print(fichier.getName() + ";");
+                    writer.printf("%.3f;", (double) tempsBellman / 1e6);
+                    writer.printf("%.3f;", (double) tempsDijkstra / 1e6);
+                    writer.printf("%.3f;", (double) tempsBellman / 1e9);
+                    writer.printf("%.3f;", (double) tempsDijkstra / 1e9);
+                    writer.println();
 
                 }
             }
+            writer.close();
         } catch(IOException err){
             err.printStackTrace();
         }
-
-
-
-
-
-
-
-
-        /*
-        System.out.println("Méthode BellmanFord, graphe résolu en : " + resultBF / 1000000000 + " secondes / " + resultBF / 1000000 + " millisecondes.");
-
-        System.out.println("Méthode Dijkstra, graphe résolu en : " + resultD / 1000000000 + " secondes / " + resultD / 1000000 + " millisecondes.");
-
-        if(resultD < resultBF) {
-            System.out.println("Méthode Dijkstra plus rapide");
-        }else{
-            System.out.println("Méthode BellmanFord plus rapide");
-        }
-        */
 
     }
 }
