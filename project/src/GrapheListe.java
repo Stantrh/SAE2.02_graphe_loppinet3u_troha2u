@@ -62,19 +62,33 @@ public class GrapheListe implements Graphe{
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
-        int nbArcsMax = 10;
-        int nbArcsMin = 3;
+        int nbArcsMin = 5;
+
+        if(nbArcsMin>taille)
+            nbArcsMin = taille;
 
         // Pour le nombre de noeuds indiqué :
-        for(int i=1;i<taille+1;i++){
-            // On ajoute un arc entre chaque noeud et le noeud suivant afin d'obtenir une chemin qui relie tous les noeuds
-            ajouterArc(Integer.toString(i), Integer.toString(i+1), (int)Math.ceil(Math.random()*100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
+        for (int i = 1; i <= taille; i++) {
+            // On ajoute un arc entre chaque noeud et le noeud suivant afin d'obtenir un chemin qui relie tous les noeuds
+            ajouterArc(Integer.toString(i), Integer.toString(i + 1), (int) Math.ceil(Math.random() * 100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
 
             // Pour chaque noeud du graphe, on ajoute un nombre aléatoire d'arcs reliant ce noeud et un autre noeud aléatoirement de la liste
-            for(int j=0;j<(int)(Math.floor(Math.random()*nbArcsMax)+nbArcsMin);j++){
-                ajouterArc(Integer.toString(i), Integer.toString((int)Math.ceil(Math.random()*taille)), (int)Math.ceil(Math.random()*100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
+            int j = 0;
+            List<Integer> noeudsDisponibles = new ArrayList<Integer>();
+            for (int k = 1; k < taille; k++) { // taille+1 car on peut rejoindre directement le dernier noeud
+                noeudsDisponibles.add(k);
+            }
+            Collections.shuffle(noeudsDisponibles); // On mélange le tableau pour que ça soit aléatoire (on aurait aussi pu utiliser un indice random parmi le tableau de base) mais c'est préférable pour la lisibilité
+            while (j < nbArcsMin && !noeudsDisponibles.isEmpty()){
+                int indexDestination = noeudsDisponibles.remove(0);
+                String destinationAleatoire = Integer.toString(indexDestination);
+                if (!this.ensNoeuds.get(i).verifierPresenceArc(destinationAleatoire)) { // Condition afin d'être sûr que le nbArcsMin sera respecté
+                    ajouterArc(Integer.toString(i), destinationAleatoire, (int) Math.ceil(Math.random() * 100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
+                    j++;
+                }
             }
         }
+
 
     }
 
@@ -284,8 +298,8 @@ public class GrapheListe implements Graphe{
 
         gL.ajouterArc("E", "D", 43);
 
-
-        System.out.println(gL.toGraphviz());
+        System.out.println(gL.toString()); // Question 8
+        // System.out.println(gL.toGraphviz()); // Question 9
 
         gL.creerFichier("ressources/matrice.txt", "ressources/output.txt");
 
