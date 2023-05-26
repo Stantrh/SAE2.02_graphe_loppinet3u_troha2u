@@ -67,7 +67,7 @@ public class GrapheLabyrinthe implements Graphe{
 
             int col = suivant[0];
             int lig = suivant[1];
-            if(!this.laby.getMur(col, lig) && (col < colonnes && lig < lignes)){
+            if(!this.laby.getMur(col, lig) && (col < colonnes && lig < lignes) && (col >= 0 && lig >=0)){
                 String dest = "(" + col + "," + lig + ")";
                 l.add(new Arc(dest, 1));
             }
