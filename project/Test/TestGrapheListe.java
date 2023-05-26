@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestGrapheListe {
 
@@ -76,8 +77,64 @@ public class TestGrapheListe {
         assertEquals(l, gL.listeNoeuds());
     }
 
+    /**
+     * Test pour voir si un ajout d'un arc se fait bien
+     */
     @Test
-    public void testToString(){
+    public void testAjouterArc_AjoutUnique() {
+        GrapheListe gL = new GrapheListe();
+        gL.ajouterArc("A", "B", 10);
+        assertEquals("A -> B(10) \n", gL.toString());
+    }
+
+    /**
+     * Test pour voir si un ajout d'un arc se fait bien avec la même origine
+     */
+    @Test
+    public void testAjouterArc_MemeOrigineDifferentesDestinations() {
+        GrapheListe gL = new GrapheListe();
+        gL.ajouterArc("A", "B", 10);
+        gL.ajouterArc("A", "C", 15);
+        assertEquals("A -> B(10) C(15) \n", gL.toString());
+    }
+
+    /**
+     * Test pour voir si un ajout d'un arc se fait si il y a la même origine et la même destination (ça doit pas se faire)
+     */
+    @Test
+    public void testAjouterArc_MemeOrigineMemeDestinationDifferentCouts() {
+        GrapheListe gL = new GrapheListe();
+        gL.ajouterArc("A", "B", 10);
+        gL.ajouterArc("A", "B", 15);
+        assertEquals("A -> B(10) \n", gL.toString());
+    }
+
+    /**
+     * Test pour voir si un ajout d'un arc se fait si la destination est inexistante
+     */
+    @Test
+    public void testAjouterArc_DestinationInexistante() {
+        GrapheListe gL = new GrapheListe();
+        gL.ajouterArc("A", "B", 10);
+        assertEquals("A -> B(10) \n", gL.toString());
+    }
+
+    /**
+     * Test pour voir si uun ajout d'un arc se fait si l'origine est inexistante
+     */
+    @Test
+    public void testAjouterArc_OrigineInexistante() {
+        GrapheListe gL = new GrapheListe();
+        gL.ajouterArc("A", "B", 10);
+        gL.ajouterArc("B", "C", 15);
+        assertEquals("A -> B(10) \nB -> C(15) \n", gL.toString());
+    }
+
+    /**
+     * Test pour voir si l'affichage d'un graphe non vide se fait bien
+     */
+    @Test
+    public void testToString_GrapheNonVide(){
         // Préparation des données
 
         GrapheListe gL = new GrapheListe();
@@ -105,8 +162,26 @@ public class TestGrapheListe {
         assertEquals(aff, gL.toString());
     }
 
+    /**
+     * Test pour voir l'affichage d'un graphe vide ne provoque pas d'erreur et ne renvoit qu'une chaine vide.
+     */
     @Test
-    public void test_toGraphviz(){
+    public void testToString_GrapheVide() {
+        // Vérifier la représentation sous forme de chaîne d'un graphe vide
+        GrapheListe gL = new GrapheListe();
+
+        // Méthode testée
+        String result = gL.toString();
+
+        // Vérification
+        assertEquals("", result);
+    }
+
+    /**
+     * Test pour voir si l'affichage d'un graphe non vide au format viz se fait bien
+     */
+    @Test
+    public void testToGraphviz_GrapheNonVide(){
         // Préparation des données
         GrapheListe gL = new GrapheListe();
 
@@ -134,6 +209,21 @@ public class TestGrapheListe {
                 "}";
 
         assertEquals(aff, gL.toGraphviz());
+    }
+
+    /**
+     * Test pour voir l'affichage d'un graphe vide au format viz ne provoque pas d'erreur et ne renvoit que la strcture sans aucun sommet
+     */
+    @Test
+    public void testToGraphviz_GrapheVide() {
+        // Vérifier la représentation au format Graphviz d'un graphe vide
+        GrapheListe gL = new GrapheListe();
+
+        // Méthode testée
+        String result = gL.toGraphviz();
+
+        // Vérification
+        assertEquals("digraph G{\n}", result);
     }
 
 

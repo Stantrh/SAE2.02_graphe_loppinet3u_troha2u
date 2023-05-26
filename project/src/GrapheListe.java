@@ -25,9 +25,9 @@ public class GrapheListe implements Graphe{
     }
 
     /**
-     * Constructeur d'un graphe à partir du nom d'un fichier. On lit le fichier ligne par ligne
+     * Constructeur d'un graphe à partir le chemin amenaut au fichier sous la forme ./ressources/<nomDuFichier>. On lit le fichier ligne par ligne
      * Pour ensuite créer un arc avec chaque ligne puisqu'on a le cout, le noeud de départ et celui de destination
-     * @param nomFichierSrc nom du fichier source dont on veut extraire les données du graphe
+     * @param nomFichierSrc chemin amenant au fichier source sous la forme ./ressources/<nomDuFichier> dont on veut extraire les données du graphe
      */
     public GrapheListe(String nomFichierSrc){
         // Initialisation des listes dans tous les cas pour éviter de provoquer des erreurs à l'avenir (méthode add notamment)
@@ -62,13 +62,13 @@ public class GrapheListe implements Graphe{
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
-        int nbArcsMin = 5;
+        int nbArcsMin = (int)Math.ceil(taille*0.6); // 0,6 pour avoir une forte connectivité, on peut l'augmenter jusqu'à 1 pour avoir une meilleure connectivité
 
         if(nbArcsMin>taille)
             nbArcsMin = taille;
 
         // Pour le nombre de noeuds indiqué :
-        for (int i = 1; i <= taille; i++) {
+        for (int i = 1; i < taille; i++) {
             // On ajoute un arc entre chaque noeud et le noeud suivant afin d'obtenir un chemin qui relie tous les noeuds
             ajouterArc(Integer.toString(i), Integer.toString(i + 1), (int) Math.ceil(Math.random() * 100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
 
@@ -240,7 +240,7 @@ public class GrapheListe implements Graphe{
             BufferedWriter fich = new BufferedWriter(new FileWriter(nomFichierDest));
 
             String ligne = fichier.readLine();
-            // Première ligne du fichier pour se rappeler de quelle colonnes
+            // Première,ligne du fichier pour se rappeler de quelle colonnes
             // correspond à quel noeud
             String[] ligneUn = ligne.split("\t");
             ligne = fichier.readLine();
