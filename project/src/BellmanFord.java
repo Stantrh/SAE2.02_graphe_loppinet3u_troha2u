@@ -24,8 +24,7 @@ public class BellmanFord implements Algorithme {
         }
         boolean memeLigne = true;
 
-        // Correspond au nombre d'itération pour l'affichage (Question 22)
-        int k = 0;
+
         while(memeLigne) {
             memeLigne = false;
 
@@ -56,8 +55,6 @@ public class BellmanFord implements Algorithme {
                 }
 
             }
-            k++;
-            System.out.println("Itération n° " + k + " \n" + valeurs.toString());
         }
         return valeurs;
     }

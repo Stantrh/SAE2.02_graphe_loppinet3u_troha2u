@@ -6,7 +6,7 @@ public class MainComparaison {
         GrapheListe grapheBoucle = new GrapheListe("./ressources/Graphe_boucle.txt");
 
         // Graphe dans le dossier Graphe qui est très dense
-        GrapheListe grapheDense = new GrapheListe("./ressources/testGraphe.txt");
+        GrapheListe grapheDense = new GrapheListe("./ressources/Graphes/Graphe203.txt");
         // Graphe21 Graphe34 Graphe61
         BellmanFord bF = new BellmanFord();
         Dijkstra d = new Dijkstra();
