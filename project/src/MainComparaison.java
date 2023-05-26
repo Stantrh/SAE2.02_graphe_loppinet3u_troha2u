@@ -25,14 +25,12 @@ public class MainComparaison {
             return Integer.compare(nb1, nb2);
         });
 
-        // Graphe fourni en exemple sur Arche
-        GrapheListe grapheBoucle = new GrapheListe("./ressources/Graphe_boucle.txt");
 
         // Pour pouvoir utiliser les méthodes resoudre propre à chaque algorithme
         BellmanFord bF = new BellmanFord();
         Dijkstra d = new Dijkstra();
         try{
-            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/hihi.csv"));
+            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/comparatifAlgos.csv"));
 
             // On écrit la première ligne du fichier pour les en têtes et noms de colonnes
             writer.println("Temps/Algorithme" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
@@ -41,7 +39,7 @@ public class MainComparaison {
             // Pour chaque fichier de la liste faire
             for(File fichier : liste) {
                 if (fichier.isFile()) { // Vérification que fichier ne soit pas autre chose qu'un fichier
-                    System.out.println(fichier.getName());
+                    System.out.println(fichier.getName() + " exporté !");
                     // Création du graphe selon le fichier
                     GrapheListe g = new GrapheListe(fichier.getPath());
 
