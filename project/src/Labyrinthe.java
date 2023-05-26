@@ -1,8 +1,7 @@
-package laby;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -152,6 +151,50 @@ public class Labyrinthe {
         return false;
     }
 
+
+    public Graphe genererGraphe(){
+        GrapheListe g = new GrapheListe();
+        // Parcours ligne par ligne et chaque colonne par ligne
+
+        int nbLignes = this.murs[0].length;
+        int nbColonnes = this.murs.length;
+        for (int ligne = 0; ligne < nbLignes; ligne++) {
+            for (int colonne = 0; colonne < nbColonnes; colonne++) {
+
+                // Si murs[x][y] vaut false, c'est à dire qu'aux coordonnées x y il n'y a pas de murs, donc on peut créer un Noeud
+                if(!murs[colonne][ligne]){
+                    // D'abord créer un Noeud pour vérifier les arcs disponibles après
+                    String nomNoeud = "(" + colonne + "," + ligne + ")";
+                    // Vérifier les arcs à créer depuis le noeud actuel (les coordonnées actuelles)
+
+                    // On stocke tous les déplacements possibles dans une liste d'entiers pour vérifier
+                    // Par exemple, pour l'indice 0 de deplacementsX et Y, on va rester sur la meme colonne mais aller en haut
+                    // Puisque colonne += 0 mais ligne += -1, ainsi cela monte les coordonnées.
+                    int[] deplacementsX = {0, 0, -1, 1}; // Haut  Bas  Gauche  Droite
+                    int[] deplacementsY = {-1, 1, 0, 0}; // Haut  Bas  Gauche  Droite
+
+                    for (int i = 0; i < deplacementsX.length; i++) {
+                        int newX = colonne + deplacementsX[i];
+                        int newY = ligne + deplacementsY[i];
+
+                        if (newX >= 0 && newX < nbColonnes && newY >= 0 && newY < nbLignes && !murs[newX][newY]) {
+                            String nomNoeudDest = "(" + newX + "," + newY + ")";
+                            g.ajouterArc(nomNoeud, nomNoeudDest, 1);
+                        }
+                    }
+                }
+            }
+        }
+        return g;
+
+    }
+
+
+
+
+
+
+
     // ##################################
     // GETTER
     // ##################################
@@ -183,5 +226,20 @@ public class Labyrinthe {
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
         return this.murs[x][y];
+    }
+
+
+
+    public static void main(String[] args) throws Exception{
+
+        Labyrinthe l = new Labyrinthe("./ressources/labySimple/laby2.txt");
+        Graphe g = l.genererGraphe();
+        Dijkstra d = new Dijkstra();
+        Valeur v = d.resoudre(g, "(1,1)");
+        System.out.println(v.toString());
+        List<String> chemin = v.calculerChemin("(17,12)");
+        for(String s : chemin){
+            System.out.print(s + " -> ");
+        }
     }
 }
