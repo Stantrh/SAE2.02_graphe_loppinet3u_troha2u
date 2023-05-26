@@ -39,15 +39,25 @@ public class TestBellmanFord {
 
 
         assertEquals(0, (int)v.getValeur("A"));
-        assertEquals(3, (int) v.getValeur("B"));
+        assertEquals(null, v.getParent("A"));
+        assertEquals(3, (int)v.getValeur("B"));
+        assertEquals("A", v.getParent("B"));
         assertEquals(4, (int)v.getValeur("C"));
+        assertEquals("F", v.getParent("C"));
         assertEquals(7, (int)v.getValeur("D"));
+        assertEquals("G",v.getParent("D"));
         assertEquals(8, (int)v.getValeur("E"));
+        assertEquals("D", v.getParent("E"));
         assertEquals(3, (int)v.getValeur("F"));
+        assertEquals("A", v.getParent("F"));
         assertEquals(5, (int)v.getValeur("G"));
+        assertEquals("C", v.getParent("G"));
         assertEquals(8, (int)v.getValeur("H"));
+        assertEquals("D", v.getParent("H"));
         assertEquals(9, (int)v.getValeur("I"));
+        assertEquals("E", v.getParent("I"));
         assertEquals(11, (int)v.getValeur("J"));
+        assertEquals("I", v.getParent("J"));
 
     }
 }
