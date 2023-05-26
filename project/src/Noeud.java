@@ -54,11 +54,11 @@ public class Noeud {
      */
     public void ajouterArc(String destination, double cout){
         // Seulement si l'arc n'est pas déjà dans la liste d'arcs, on l'ajoute
-        if(!verifierPresenceArc(destination,cout))
+        if(!verifierPresenceArc(destination))
             this.adj.add(new Arc(destination,cout));
     }
 
-    public boolean verifierPresenceArc(String destination, double cout){
+    public boolean verifierPresenceArc(String destination){
         for(Arc a : this.adj){
             // Si c'est le cas, on définit le boolean à true
             if(a.getDest().equals(destination)) {
