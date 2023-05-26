@@ -62,14 +62,17 @@ public class GrapheListe implements Graphe{
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
+        int nbArcsMax = 10;
+        int nbArcsMin = 3;
+
         // Pour le nombre de noeuds indiqué :
         for(int i=1;i<taille+1;i++){
             // On ajoute un arc entre chaque noeud et le noeud suivant afin d'obtenir une chemin qui relie tous les noeuds
-            ajouterArc(Integer.toString(i), Integer.toString(i+1), (int)Math.floor(Math.random()*100));
+            ajouterArc(Integer.toString(i), Integer.toString(i+1), (int)Math.ceil(Math.random()*100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
 
             // Pour chaque noeud du graphe, on ajoute un nombre aléatoire d'arcs reliant ce noeud et un autre noeud aléatoirement de la liste
-            for(int j=0;j<Math.random()*10;j++){
-                ajouterArc(Integer.toString(i), Integer.toString((int)Math.floor(Math.random())), (int)Math.floor(Math.random()*100));
+            for(int j=0;j<(int)(Math.floor(Math.random()*nbArcsMax)+nbArcsMin);j++){
+                ajouterArc(Integer.toString(i), Integer.toString((int)Math.ceil(Math.random()*taille)), (int)Math.ceil(Math.random()*100)); // Arrondit le coût à l'entier supérieur (pour éviter de tomber sur 0)
             }
         }
 
