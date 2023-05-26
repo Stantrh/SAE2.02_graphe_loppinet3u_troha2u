@@ -31,8 +31,6 @@ public class Dijkstra implements Algorithme {
         // A.distance <- 0
         valeur.setValeur(depart, 0);
 
-
-
         // Tant que Q est un ensemble non vide faire
         while(!Q.isEmpty()){
             // On recherche le sommet de Q tel que sa distance soit la plus petite et on garde son indice
@@ -68,6 +66,7 @@ public class Dijkstra implements Algorithme {
                     valeur.setParent(v,u);
                 }
             }
+
         }
         return valeur;
     }
