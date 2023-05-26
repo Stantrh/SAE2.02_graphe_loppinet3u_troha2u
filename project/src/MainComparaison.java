@@ -32,7 +32,7 @@ public class MainComparaison {
         BellmanFord bF = new BellmanFord();
         Dijkstra d = new Dijkstra();
         try{
-            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/lol.csv"));
+            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/hihi.csv"));
 
             // On écrit la première ligne du fichier pour les en têtes et noms de colonnes
             writer.println("Temps/Algorithme" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
@@ -59,8 +59,6 @@ public class MainComparaison {
                     writer.print(fichier.getName() + ";");
                     writer.printf("%.3f;", (double) tempsBellman / 1e6);
                     writer.printf("%.3f;", (double) tempsDijkstra / 1e6);
-                    writer.printf("%.3f;", (double) tempsBellman / 1e9);
-                    writer.printf("%.3f;", (double) tempsDijkstra / 1e9);
                     writer.println();
 
                 }
