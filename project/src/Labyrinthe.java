@@ -151,7 +151,12 @@ public class Labyrinthe {
         return false;
     }
 
-
+    /**
+     * Cette méthode génère un graphe à partir de l'objet Labyrinthe qui l'appelle
+     * Cela crée des noeuds dont le nom correspond aux coordonnées x y auxquelles il sont situés.
+     * Les noeuds sont reliés entre eux via des arcs lorsque le déplacement est possible
+     * @return le Graphe généré à partir de l'instance Labyrinthe
+     */
     public Graphe genererGraphe(){
         GrapheListe g = new GrapheListe();
         // Parcours ligne par ligne et chaque colonne par ligne

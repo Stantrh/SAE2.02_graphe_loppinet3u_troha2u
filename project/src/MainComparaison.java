@@ -2,6 +2,11 @@ import javax.sound.midi.SysexMessage;
 import java.io.*;
 import java.util.Arrays;
 
+/**
+ * Cette classe permet de comparer les deux algorithmes (Dijkstra et BellmanFord), plus précisément leur vitesse d'exécution
+ * Les tests ont été réalisé sur les fichiers graphes contenus dans le dossier ./ressources/Graphes disponible sur Arche
+ * Dans ces graphes, les noeuds sont modérément connectés entre eux.
+ */
 public class MainComparaison {
 
     public static void main(String[] args){
@@ -30,10 +35,10 @@ public class MainComparaison {
         BellmanFord bF = new BellmanFord();
         Dijkstra d = new Dijkstra();
         try{
-            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/comparatifAlgos.csv"));
+            PrintWriter writer = new PrintWriter(new FileWriter("./ressources/comparatifAlgosProfs.csv"));
 
             // On écrit la première ligne du fichier pour les en têtes et noms de colonnes
-            writer.println("Temps/Algorithme" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
+            writer.println("Nombre de noeuds par Graphe" + ";" + "BellmanFord (point fixe)"  + ";" + "Djikstra");
 
 
             // Pour chaque fichier de la liste faire
@@ -54,7 +59,7 @@ public class MainComparaison {
                     long finDijkstra = System.nanoTime();
                     long tempsDijkstra = finDijkstra - debutDijkstra;
 
-                    writer.print(fichier.getName() + ";");
+                    writer.print(g.listeNoeuds().size() + ";"); // Pour pouvoir comparer les algorithmes en fonction du nombre de noeuds
                     writer.printf("%.3f;", (double) tempsBellman / 1e6);
                     writer.printf("%.3f;", (double) tempsDijkstra / 1e6);
                     writer.println();

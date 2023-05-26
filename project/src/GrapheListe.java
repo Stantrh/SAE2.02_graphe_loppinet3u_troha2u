@@ -62,7 +62,7 @@ public class GrapheListe implements Graphe{
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
 
-        int nbArcsMin = (int)Math.ceil(taille*0.6); // 0,6 pour avoir une forte connectivité, on peut l'augmenter jusqu'à 1 pour avoir une meilleure connectivité
+        int nbArcsMin = (int)Math.ceil(taille*0.9); // 0,9 pour avoir une forte connectivité, on peut l'augmenter jusqu'à 1 pour avoir une meilleure connectivité
 
         if(nbArcsMin>taille)
             nbArcsMin = taille;

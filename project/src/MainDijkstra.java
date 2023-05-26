@@ -2,6 +2,14 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Cette classe permet :
+ * La lecture des graphes à partir de fichiers texte
+ * Le calcul des chemins les plus courts pour des noeuds donnés
+ * L'affichage des chemins pour des noeuds donnés
+ * Les noeuds donnés sont choisis aléatoirement pour chaque graphe, compris dans les noeuds du graphe.
+ * Et le résultat est dans la console sous forme d'affichage par graphe dont le nom du fichier est spécifié.
+ */
 public class MainDijkstra {
     public static void main(String[] args){
             // Pour accéder à la liste de tous les fichiers du dossier Graphes
