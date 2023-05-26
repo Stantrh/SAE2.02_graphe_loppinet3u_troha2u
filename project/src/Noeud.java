@@ -53,20 +53,19 @@ public class Noeud {
      * @param cout coût de l'arc à ajouter
      */
     public void ajouterArc(String destination, double cout){
-        // Boolean indiquant si un arc a déjà pour destination la même que celui que l'on veut rajouter
-        boolean dejaPresent = false;
-        // On parcourt la liste d'arcs pour vérifier si cet arc est déjà existant.
+        // Seulement si l'arc n'est pas déjà dans la liste d'arcs, on l'ajoute
+        if(!verifierPresenceArc(destination,cout))
+            this.adj.add(new Arc(destination,cout));
+    }
+
+    public boolean verifierPresenceArc(String destination, double cout){
         for(Arc a : this.adj){
             // Si c'est le cas, on définit le boolean à true
             if(a.getDest().equals(destination)) {
-                dejaPresent = true;
-                break; // Si l'arc est déjà existant, il ne sert plus à rien de continuer à chercher, on sait qu'on ne doit pas ajouter le nouvel arc.
+                return true;
             }
         }
-
-        // Seulement si l'arc n'est pas déjà dans la liste d'arcs, on l'ajoute
-        if(!dejaPresent)
-            this.adj.add(new Arc(destination,cout));
+        return false;
     }
 
 
