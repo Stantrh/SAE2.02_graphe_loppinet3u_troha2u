@@ -58,9 +58,10 @@ public class Noeud {
         // On parcourt la liste d'arcs pour vérifier si cet arc est déjà existant.
         for(Arc a : this.adj){
             // Si c'est le cas, on définit le boolean à true
-            if(a.getDest().equals(destination))
+            if(a.getDest().equals(destination)) {
                 dejaPresent = true;
                 break; // Si l'arc est déjà existant, il ne sert plus à rien de continuer à chercher, on sait qu'on ne doit pas ajouter le nouvel arc.
+            }
         }
 
         // Seulement si l'arc n'est pas déjà dans la liste d'arcs, on l'ajoute
